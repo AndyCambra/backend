@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi')
 const { schemas } = require('./schemas/cursos')
 
 const validateCreate = (req, res, next) => {
-  const { error, value } = schemas.create().validate(req.body)
+  const { error, value } = schemas.create.validate(req.body)
 
   error ? res.status(422).json({ error: error.details[0].message }) : next()
 }
