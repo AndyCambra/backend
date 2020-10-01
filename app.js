@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const dotenv = require("dotenv");
 dotenv.config();
+const { secured } = require("./middleware/auth");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -12,6 +13,8 @@ const personas = require("./routes/personas");
 const categorias = require("./routes/categorias");
 const cursos = require("./routes/cursos");
 const cursadas = require("./routes/cursadas");
+const auth = require("./routes/auth");
+const perfil = require("./routes/perfil");
 var app = express();
 
 // view engine setup
@@ -30,6 +33,8 @@ app.use("/personas", personas);
 app.use("/categorias", categorias);
 app.use("/cursos", cursos);
 app.use("/cursadas", cursadas);
+app.use("/auth", auth);
+app.use("/perfil", secured, perfil);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

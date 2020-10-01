@@ -1,16 +1,16 @@
-const bd = require("./../utils/bd");
+const bd = require('./../utils/bd')
 
 const getAll = () =>
-  bd("personas").select("id", "nombre", "apellido", "telefono", "mail");
+  bd('personas').select('id', 'nombre', 'apellido', 'telefono', 'mail')
 // select * from personas trae todos los campos
 
 const getSingle = (id) =>
-  bd("personas")
-    .where({ id })
-    .select("id", "nombre", "apellido", "mail", "telefono");
+  bd('personas')
+    .where({ id, habilitado: true })
+    .select('id', 'nombre', 'apellido', 'mail', 'telefono')
 
-const create = (obj) => bd("personas").insert(obj);
+const create = (obj) => bd('personas').insert(obj)
 
-const modify = (id, obj) => bd("personas").where({ id }).update(obj);
+const modify = (id, obj) => bd('personas').where({ id }).update(obj)
 
-module.exports = { getAll, getSingle, create, modify };
+module.exports = { getAll, getSingle, create, modify }
