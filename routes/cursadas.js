@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const service = require("./../models/cursadas");
 const { validateCreate } = require("./../middleware/cursadas");
+const { validateModify } = require("../middleware/cursos");
+
 const create = (req, res) =>
   service
     .create(req.body)
@@ -29,6 +31,6 @@ const modify = (req, res) =>
 router.get("/all", all);
 router.get("/single/:id", single);
 router.post("/create", validateCreate, create);
-router.put("/modify/:id", modify);
+router.put("/modify/:id", validateModify, modify);
 
 module.exports = router;

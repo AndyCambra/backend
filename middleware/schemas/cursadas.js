@@ -10,6 +10,16 @@ const schemas = {
     precio: Joi.number().required(),
     horario: Joi.string().required(),
   }),
+
+  modify: Joi.object().keys({
+    id: schemaId,
+    cursoId: schemaId,
+    modalidadId: schemaId,
+    fecha_inicio: Joi.date().required(),
+    fecha_fin: Joi.date().optional(),
+    precio: Joi.number().required(),
+    horario: Joi.string().required(),
+  }),
 };
 
 module.exports = { schemas };

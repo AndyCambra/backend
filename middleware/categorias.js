@@ -6,4 +6,12 @@ const validateCreate = (req, res, next) => {
   error ? res.status(422).json({ error: error.details[0].message }) : next();
 };
 
-module.exports = { validateCreate };
+const validateModify = (req, res, next) => {
+  const obj = {
+    ...req.body,
+    ...req.params,
+  };
+  const { error, value } = schemas.modify.validate(req.body);
+  error ? res.status(422).json({ error: error.details[0].message }) : next();
+};
+module.exports = { validateCreate, validateModify };

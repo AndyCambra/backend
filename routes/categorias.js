@@ -29,7 +29,7 @@ const modify = (req, res) =>
 
 router.get("/all", all);
 router.post("/create", middleware.validateCreate, create);
-router.put("/modify/:id", modify);
+router.put("/modify/:id", middleware.validateModify, modify);
 router.get("/single/:id", single);
 
 module.exports = router;
