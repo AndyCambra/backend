@@ -3,11 +3,11 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const sha1 = require("sha1");
-const publicKey = fs.readFileSync("./keys/public.pem");
+const privateKey = fs.readFileSync("./keys/private.pem");
 const singOptions = { algorithm: "RS256", expiresIn: "2h" };
 const service = require("./../models/auth");
 
-const createToken = (payload) => jwt.sing(payload, publicKey, singOptions);
+const createToken = (payload) => jwt.sign(payload, privateKey, singOptions);
 
 const auth = async (req, res) => {
   try {
@@ -25,6 +25,7 @@ const auth = async (req, res) => {
       //info: datos publicos para mostrar en vistas
     }
   } catch (e) {
+    console.log(e);
     res.sendStatus(500);
   }
 };

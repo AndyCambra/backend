@@ -4,16 +4,16 @@ const T = require("./../utils/schemas");
 const create = (obj) => bd("cursadas").insert(obj);
 
 const get = (conditions = true) => {
-  bd("cursadas")
-    .join("cursos", "cursadas.cursoId", "curso.id")
+  return bd("cursadas")
+    .join("cursos", "cursadas.cursoId", "cursos.id")
     .join("modalidades", "cursadas.modalidadId", "modalidades.id")
-    .join("docentes", "cursadas.docentesId", "docentes.id")
-    .join("categorias", "cursos.idCategoria", "categorias.id")
+    .join("docentes", "cursadas.docenteCursadaId", "docentes.id")
+    .join("categorias", "cursos.categoriaId", "categorias.id")
     .where({ "cursadas.habilitado": true, ...conditions })
     .select(
       "cursadas.fecha_inicio",
-      "cursada.fecha_fin",
-      "cursada.horario",
+      "cursadas.fecha_fin",
+      "cursadas.horario",
       "categorias.nombre as nombreCategoria",
       "modalidades.nombre as nombreModalidad",
       "docentes.nombre as nombreDocente",
@@ -22,7 +22,8 @@ const get = (conditions = true) => {
     );
 };
 
-const single = (id) => get({ "cursada.id": id });
+const single = (id) => get({ "cursadas.id": id });
 const all = () => get();
+const modify = (id, obj) => bd("cursadas.id").where({ id }).update(obj);
 
-module.exports = { create, all, single };
+module.exports = { create, all, single, modify };

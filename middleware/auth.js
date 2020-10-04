@@ -9,6 +9,7 @@ const secured = (req, res, next) => {
     req.id = id;
     next();
   } catch (e) {
+    console.log(e);
     res.sendStatus(401);
   }
 };

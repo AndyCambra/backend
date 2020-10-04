@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const service = require("./../models/cursadas");
 const { validateCreate } = require("./../middleware/cursadas");
-const { validateModify } = require("../middleware/cursos");
+const { validateModify } = require("../middleware/cursadas");
 
 const create = (req, res) =>
   service

@@ -11,7 +11,7 @@ const all = (req, res) =>
 
 const single = (req, res) =>
   service
-    .getSingle(req.params.id)
+    .single(req.params.id)
     .then((response) => res.json(response))
     .catch((e) => res.status(500).json(e));
 
