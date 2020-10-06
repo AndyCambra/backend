@@ -15,6 +15,8 @@ const cursos = require("./routes/cursos");
 const cursadas = require("./routes/cursadas");
 const auth = require("./routes/auth");
 const perfil = require("./routes/perfil");
+const docentes = require("./routes/docentes");
+const modalidades = require("./routes/modalidades");
 var app = express();
 
 // view engine setup
@@ -35,6 +37,8 @@ app.use("/cursos", cursos);
 app.use("/cursadas", cursadas);
 app.use("/auth", auth);
 app.use("/perfil", secured, perfil);
+app.use("/docentes", docentes);
+app.use("/modalidades", modalidades);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
